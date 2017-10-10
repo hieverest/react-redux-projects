@@ -1,3 +1,6 @@
+Used Redux-observable as middleware for Rudux. Used Fetch to make async HTTP requests and converted the Promise return from fetch() to Observables. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

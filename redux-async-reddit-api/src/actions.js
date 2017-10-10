@@ -2,6 +2,9 @@ export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
+export const REQUEST_POSTS_EPIC = 'REQUEST_POSTS_EPIC'
+export const RECEIVE_POSTS_SUCCEED = 'RECEIVE_POSTS_SUCCEED'
+
 
 export function selectSubreddit(subreddit) {
   return {
@@ -17,28 +20,27 @@ export function invalidateSubreddit(subreddit) {
   }
 }
 
-function requestPosts(subreddit) {
+
+function requestPostsEpic(subreddit) {
   return {
-    type: REQUEST_POSTS,
+    type: REQUEST_POSTS_EPIC,
     subreddit
   }
 }
 
-function receivePosts(subreddit, json) {
+export function requestPosts_succeed(subreddit,json) {
   return {
-    type: RECEIVE_POSTS,
+    type: RECEIVE_POSTS_SUCCEED,
     subreddit,
     posts: json.data.children.map(child => child.data),
     receivedAt: Date.now()
   }
 }
 
+
 function fetchPosts(subreddit) {
   return dispatch => {
-    dispatch(requestPosts(subreddit))
-    return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
+    dispatch(requestPostsEpic(subreddit));
   }
 }
 

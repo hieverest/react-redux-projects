@@ -1,6 +1,5 @@
 import { combineEpics } from 'redux-observable';
 import { REQUEST_POSTS_EPIC, requestPosts_succeed } from '../actions'
-import { ajax } from 'rxjs/observable/dom/ajax';
 import Rx from 'rxjs';
 
 let fetch$ = path => {
